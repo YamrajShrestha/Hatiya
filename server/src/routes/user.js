@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const saltRounds = 10;
 
 router.post("/register", async (req, res) => {
@@ -30,12 +31,13 @@ router.post("/login", async (req, res) => {
   if (!userDetails) {
     res.status(401).json({ msg: "Invalid credentials" });
   } else {
-    const isMatched = bcrypt.compare(
-      req.body.password,
-      userDetails.password
-    );
+    const isMatched = bcrypt.compare(req.body.password, userDetails.password);
     if (isMatched) {
-      res.json({ msg: "Login success" });
+      const token = jwt.sign(
+        { phoneNumber: req.body.phoneNumber, id: userDetails._id },
+        process.env.SECRET_KEY
+      );
+      res.json({ msg: "Login success", token });
     } else {
       res.status(401).json({ msg: "Incorrect password" });
     }
