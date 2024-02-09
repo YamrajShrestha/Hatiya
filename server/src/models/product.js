@@ -8,7 +8,6 @@ const productSchema = new Schema({
   category: String,
   price: String,
   description: String,
-  image: String,
 });
 
 // Creating a model

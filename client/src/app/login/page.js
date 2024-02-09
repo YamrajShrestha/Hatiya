@@ -35,6 +35,7 @@ const ValidationSchemaExample = () => {
     console.log(res);
   };
 
+
   return (
     <div className="con">
       <Image

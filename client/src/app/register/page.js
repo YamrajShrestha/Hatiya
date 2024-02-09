@@ -23,11 +23,9 @@ const SignupSchema = Yup.object().shape({
 const ValidationSchemaExample = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const handleRegister = async (values) => {
-    const res = await fetch("https://localhost:4000/register", {
+    const res = await fetch("http://localhost:4000/register", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
     const data = await res.json();
@@ -37,6 +35,7 @@ const ValidationSchemaExample = () => {
     });
     console.log(res);
   };
+
 
   return (
     <div className="con">
@@ -57,6 +56,7 @@ const ValidationSchemaExample = () => {
         validationSchema={SignupSchema}
         onSubmit={(values) => {
           // same shape as initial values
+          // console.log(handleRegister)
           handleRegister(values);
         }}
       >

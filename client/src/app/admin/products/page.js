@@ -27,11 +27,7 @@ const SignupSchema = Yup.object().shape({
     .required("Required"),
   description: Yup.string()
     .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  image: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
+    .max(500, "Too Long!")
     .required("Required"),
 });
 
@@ -68,7 +64,6 @@ const ValidationSchemaExample = () => {
           category: "",
           price: "",
           description: "",
-          image: "",
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
@@ -107,8 +102,6 @@ const ValidationSchemaExample = () => {
             {errors.description && touched.description ? (
               <div>{errors.description}</div>
             ) : null}
-            <Field name="image" type="file" />
-            {errors.image && touched.image ? <div>{errors.image}</div> : null}
             Go to <Link href="/">HOME</Link>
             <button type="submit">Save</button>
           </Form>
