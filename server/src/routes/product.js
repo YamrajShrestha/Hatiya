@@ -16,4 +16,13 @@ router.get("/products", async (req, res) => {
     res.send({ msg: "something went worng" });
   }
 });
+router.get("/products/:id", async (req, res) => {
+  const productList = await Product.findById(req.params.id);
+  if (productList) {
+    res.send({ productList });
+  } else {
+    res.send({ msg: "something went worng" });
+  }
+});
+
 module.exports = router;

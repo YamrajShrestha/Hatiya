@@ -7,7 +7,7 @@ const cors = require("cors");
 const connection = require("./db/connection");
 const userRoute = require("./routes/user");
 const productRoute = require("./routes/product");
-console.log(process.env.SECRET_KEY);
+// console.log(process.env.SECRET_KEY);
 
 app.use(express.json());
 app.use(cors());

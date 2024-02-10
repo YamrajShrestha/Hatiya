@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const Page = () => {
@@ -19,7 +20,7 @@ const Page = () => {
     <div>
       {productList.map((item) => (
         <div key={item.productId}>
-          <h2>{item.productName}</h2>
+          <h2><Link href="">{item.productName}</Link></h2>
           {/* Add more details or components to display */}
         </div>
       ))}

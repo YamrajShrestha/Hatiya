@@ -27,12 +27,15 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+  // check if user exists
   const userDetails = await User.findOne({ phoneNumber: req.body.phoneNumber });
   if (!userDetails) {
     res.status(401).json({ msg: "Invalid credentials" });
   } else {
+    // compare the password
     const isMatched = bcrypt.compare(req.body.password, userDetails.password);
     if (isMatched) {
+      // generate a token for the user
       const token = jwt.sign(
         { phoneNumber: req.body.phoneNumber, id: userDetails._id },
         process.env.SECRET_KEY
